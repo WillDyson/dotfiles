@@ -1,0 +1,12 @@
+OPTIONS=role:Valkyrie
+OPTIONS=race:dwarf
+OPTIONS=autopickup
+OPTIONS=pickup_types:$"?!/=
+OPTIONS=pickup_thrown
+OPTIONS=pickup_burden:Burdened
+OPTIONS=symset:DECgraphics
+AUTOPICKUP_EXCEPTION=">.*scare monster.*"
+AUTOPICKUP_EXCEPTION=">.*loadstone.*"
+AUTOPICKUP_EXCEPTION=">.*rock.*"
+AUTOPICKUP_EXCEPTION=">.*stone.*"
+AUTOPICKUP_EXCEPTION=">.*glass.*"
