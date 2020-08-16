@@ -3,6 +3,8 @@
 " create ~/.nvim/undodir
 " install ripgrep
 
+syntax on
+
 set noerrorbells
 set tabstop=4 softtabstop=4
 set expandtab
@@ -18,7 +20,16 @@ set incsearch
 set noshowmode
 set splitbelow
 set splitright
-set clipboard=unnamedplus
+set scrolloff=5
+
+" yank to clipboard
+if has("clipboard")
+  set clipboard=unnamed " copy to the system clipboard
+
+  if has("unnamedplus") " X11 support
+    set clipboard+=unnamedplus
+  endif
+endif
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -34,6 +45,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'davidhalter/jedi-vim'
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -54,6 +67,7 @@ nnoremap <silent> <leader>ff :Files<cr>
 nnoremap <silent> <leader>fb :Buffers<cr>
 nnoremap <silent> <leader>fl :BLines<cr>
 nnoremap <silent> <leader><space> :noh<cr>
+nnoremap <silent> <leader>z :Goyo<cr>
 
 let g:rg_derive_root='true'
 let g:vimwiki_list=[{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
