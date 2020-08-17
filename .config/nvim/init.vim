@@ -65,6 +65,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'reedes/vim-pencil'
+Plug 'plasticboy/vim-markdown'
 
 call plug#end()
 
@@ -101,8 +102,14 @@ let g:vimwiki_global_ext=0
 " junegunn/limelight.vim
 let g:limelight_conceal_ctermfg=240
 
+" reedes/vim-pencil
+let g:pencil#textwidth = 79
+
 augroup pencil
  autocmd!
  autocmd filetype markdown,mkd,vimwiki call pencil#init()
      \ | setlocal spell
 augroup END
+
+" plasticboy/vim-markdown
+let g:vim_markdown_folding_disabled=1
