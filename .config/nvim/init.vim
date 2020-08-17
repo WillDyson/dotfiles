@@ -64,6 +64,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'davidhalter/jedi-vim'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
