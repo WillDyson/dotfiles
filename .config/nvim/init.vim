@@ -3,6 +3,8 @@
 " create ~/.nvim/undodir
 " install ripgrep
 
+set nocompatible
+filetype plugin on
 syntax on
 
 set noerrorbells
@@ -30,6 +32,20 @@ if has("clipboard")
     set clipboard+=unnamedplus
   endif
 endif
+
+" toggle word-wrap for text
+function! s:ToggleWrap()
+    let l:wrapWidth=79
+
+    if &textwidth==l:wrapWidth
+        set textwidth=0
+        echom "Word-wrap disabled"
+    else
+        let &textwidth=l:wrapWidth
+        echom "Word-wrap enabled (gp to redo text, gqip for paragraphs)"
+    endif
+endfunction
+command! ToggleWrap :call s:ToggleWrap()
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -60,6 +76,7 @@ nnoremap <silent> <leader>= :vertical resize +5<cr>
 nnoremap <silent> <leader>- :vertical resize -5<cr>
 nnoremap <silent> <leader>s= :resize +5<cr>
 nnoremap <silent> <leader>s- :resize -5<cr>
+nnoremap <silent> <leader>tw :ToggleWrap<cr>
 
 nnoremap <leader>\ :Rg<space>
 nnoremap <silent> <leader>ut :UndotreeShow<cr>
@@ -69,5 +86,9 @@ nnoremap <silent> <leader>fl :BLines<cr>
 nnoremap <silent> <leader><space> :noh<cr>
 nnoremap <silent> <leader>z :Goyo<cr>
 
+" jremmen/vim-ripgrep
 let g:rg_derive_root='true'
+
+" vimwiki/vimwiki
 let g:vimwiki_list=[{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_global_ext=0
