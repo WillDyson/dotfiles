@@ -60,9 +60,10 @@ Plug 'mbbill/undotree'
 Plug 'vimwiki/vimwiki'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'davidhalter/jedi-vim'
-Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -85,6 +86,7 @@ nnoremap <silent> <leader>fb :Buffers<cr>
 nnoremap <silent> <leader>fl :BLines<cr>
 nnoremap <silent> <leader><space> :noh<cr>
 nnoremap <silent> <leader>z :Goyo<cr>
+nnoremap <silent> <leader>ll :Limelight!!<cr>
 
 " jremmen/vim-ripgrep
 let g:rg_derive_root='true'
@@ -92,3 +94,6 @@ let g:rg_derive_root='true'
 " vimwiki/vimwiki
 let g:vimwiki_list=[{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext=0
+
+" junegunn/limelight.vim
+let g:limelight_conceal_ctermfg=240
