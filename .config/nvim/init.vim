@@ -64,7 +64,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'davidhalter/jedi-vim'
-Plug 'airblade/vim-gitgutter'
+Plug 'reedes/vim-pencil'
 
 call plug#end()
 
@@ -88,6 +88,8 @@ nnoremap <silent> <leader>fl :BLines<cr>
 nnoremap <silent> <leader><space> :noh<cr>
 nnoremap <silent> <leader>z :Goyo<cr>
 nnoremap <silent> <leader>ll :Limelight!!<cr>
+nnoremap <silent> <leader>wp :VimwikiDiaryPrevDay<cr>
+nnoremap <silent> <leader>wP :VimwikiDiaryNextDay<cr>
 
 " jremmen/vim-ripgrep
 let g:rg_derive_root='true'
@@ -98,3 +100,9 @@ let g:vimwiki_global_ext=0
 
 " junegunn/limelight.vim
 let g:limelight_conceal_ctermfg=240
+
+augroup pencil
+ autocmd!
+ autocmd filetype markdown,mkd,vimwiki call pencil#init()
+     \ | setlocal spell
+augroup END
