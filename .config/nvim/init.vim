@@ -23,6 +23,7 @@ set noshowmode
 set splitbelow
 set splitright
 set scrolloff=5
+set foldlevelstart=99
 
 " yank to clipboard
 if has("clipboard")
@@ -65,7 +66,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'reedes/vim-pencil'
-Plug 'plasticboy/vim-markdown'
 
 call plug#end()
 
@@ -110,6 +110,3 @@ augroup pencil
  autocmd filetype markdown,mkd,vimwiki call pencil#init()
      \ | setlocal spell
 augroup END
-
-" plasticboy/vim-markdown
-let g:vim_markdown_folding_disabled=1
