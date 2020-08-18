@@ -79,16 +79,15 @@ nnoremap <silent> <leader>= :vertical resize +5<cr>
 nnoremap <silent> <leader>- :vertical resize -5<cr>
 nnoremap <silent> <leader>s= :resize +5<cr>
 nnoremap <silent> <leader>s- :resize -5<cr>
-nnoremap <silent> <leader>tw :ToggleWrap<cr>
 
-nnoremap <leader>\ :Rg<space>
+nnoremap \ :Rg<space>
 nnoremap <silent> <leader>ut :UndotreeShow<cr>
 nnoremap <silent> <leader>ff :Files<cr>
 nnoremap <silent> <leader>fb :Buffers<cr>
 nnoremap <silent> <leader>fl :BLines<cr>
 nnoremap <silent> <leader><space> :noh<cr>
-nnoremap <silent> <leader>z :Goyo<cr>
-nnoremap <silent> <leader>ll :Limelight!!<cr>
+nnoremap <silent> <leader>zz :Goyo<cr>
+nnoremap <silent> <leader>zl :Limelight!!<cr>
 nnoremap <silent> <leader>wp :VimwikiDiaryPrevDay<cr>
 nnoremap <silent> <leader>wP :VimwikiDiaryNextDay<cr>
 
