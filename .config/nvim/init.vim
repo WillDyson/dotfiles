@@ -56,6 +56,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-vinegar'
 Plug 'mbbill/undotree'
 Plug 'vimwiki/vimwiki'
@@ -93,6 +94,7 @@ nnoremap <silent> <leader>zz :Goyo<cr>
 nnoremap <silent> <leader>zl :Limelight!!<cr>
 nnoremap <silent> <leader>wp :VimwikiDiaryPrevDay<cr>
 nnoremap <silent> <leader>wP :VimwikiDiaryNextDay<cr>
+nnoremap <silent> <leader>gs :Gstatus<CR>
 
 " jremmen/vim-ripgrep
 let g:rg_derive_root='true'
