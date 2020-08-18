@@ -73,8 +73,11 @@ colorscheme gruvbox
 
 let mapleader=','
 
+" delete without copy buffer
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
+
+" resize windows
 nnoremap <silent> <leader>= :vertical resize +5<cr>
 nnoremap <silent> <leader>- :vertical resize -5<cr>
 nnoremap <silent> <leader>s= :resize +5<cr>
@@ -100,6 +103,18 @@ let g:vimwiki_global_ext=0
 
 " junegunn/limelight.vim
 let g:limelight_conceal_ctermfg=240
+
+" itchyny/lightline.vim
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
 
 " reedes/vim-pencil
 let g:pencil#textwidth = 79
