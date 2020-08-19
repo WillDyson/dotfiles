@@ -34,39 +34,27 @@ if has("clipboard")
   endif
 endif
 
-" toggle word-wrap for text
-function! s:ToggleWrap()
-    let l:wrapWidth=79
-
-    if &textwidth==l:wrapWidth
-        set textwidth=0
-        echom "Word-wrap disabled"
-    else
-        let &textwidth=l:wrapWidth
-        echom "Word-wrap enabled (gp to redo text, gqip for paragraphs)"
-    endif
-endfunction
-command! ToggleWrap :call s:ToggleWrap()
-
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'morhetz/gruvbox'
-Plug 'jremmen/vim-ripgrep'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-vinegar'
-Plug 'mbbill/undotree'
-Plug 'vimwiki/vimwiki'
+Plug 'davidhalter/jedi-vim'
+Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'davidhalter/jedi-vim'
+Plug 'jremmen/vim-ripgrep'
+Plug 'morhetz/gruvbox'
+Plug 'mbbill/undotree'
 Plug 'reedes/vim-pencil'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-commentary'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
@@ -123,6 +111,8 @@ let g:pencil#textwidth = 79
 
 augroup pencil
  autocmd!
- autocmd filetype markdown,mkd,vimwiki call pencil#init()
+ autocmd filetype markdown,mkd call pencil#init()
+     \ | setlocal spell
+ autocmd filetype vimwiki call pencil#init({'wrap': 'soft'})
      \ | setlocal spell
 augroup END
