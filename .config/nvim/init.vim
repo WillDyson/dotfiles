@@ -24,6 +24,7 @@ set splitbelow
 set splitright
 set scrolloff=5
 set foldlevelstart=99
+set list listchars=tab:>-,trail:.,extends:>
 
 " yank to clipboard
 if has("clipboard")
