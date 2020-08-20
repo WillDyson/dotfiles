@@ -26,6 +26,8 @@ set scrolloff=5
 set foldlevelstart=99
 set list listchars=tab:>-,trail:.,extends:>
 
+let g:netrw_liststyle=3
+
 " yank to clipboard
 if has("clipboard")
   set clipboard=unnamed " copy to the system clipboard
