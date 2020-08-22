@@ -81,6 +81,7 @@ nnoremap <silent> <leader>ff :Files<cr>
 nnoremap <silent> <leader>fg :GFiles<cr>
 nnoremap <silent> <leader>fb :Buffers<cr>
 nnoremap <silent> <leader>fl :BLines<cr>
+nnoremap <silent> <leader>fh :Helptags<cr>
 nnoremap <silent> <leader><space> :noh<cr>
 nnoremap <silent> <leader>zz :Goyo<cr>
 nnoremap <silent> <leader>zl :Limelight!!<cr>
