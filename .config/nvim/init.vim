@@ -82,6 +82,7 @@ nnoremap <silent> <leader>= :vertical resize +5<cr>
 nnoremap <silent> <leader>- :vertical resize -5<cr>
 nnoremap <silent> <leader>s= :resize +5<cr>
 nnoremap <silent> <leader>s- :resize -5<cr>
+nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 nnoremap \ :Rg<space>
 nnoremap <silent> <leader>ut :UndotreeShow<cr>
