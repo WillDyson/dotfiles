@@ -32,6 +32,7 @@ set foldlevelstart=99
 set cmdheight=2
 set list listchars=tab:>-,trail:.,extends:>
 set signcolumn=yes
+set updatetime=500
 
 let g:netrw_liststyle=3
 
@@ -97,8 +98,12 @@ nnoremap <silent> <leader>zz :Goyo<cr>
 nnoremap <silent> <leader>zl :Limelight!!<cr>
 nnoremap <silent> <leader>wp :VimwikiDiaryPrevDay<cr>
 nnoremap <silent> <leader>wP :VimwikiDiaryNextDay<cr>
-nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gb :GBrowse<CR>
+nnoremap <silent> <leader>gs :Gstatus<cr>
+nnoremap <silent> <leader>gm :Gcommit<cr>
+nnoremap <silent> <leader>gp :Gpush<cr>
+nnoremap <silent> <leader>gb :GBrowse<cr>
+nnoremap <silent> <leader>ga :diffget //2<cr>
+nnoremap <silent> <leader>g\ :diffget //3<cr>
 
 " jremmen/vim-ripgrep
 let g:rg_derive_root='true'
