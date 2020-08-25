@@ -111,6 +111,11 @@ let g:rg_derive_root='true'
 " vimwiki/vimwiki
 let g:vimwiki_list=[{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext=0
+augroup vimwikigroup
+    autocmd!
+    " automatically update links on read diary
+    autocmd BufRead,BufNewFile diary.wiki VimwikiDiaryGenerateLinks
+augroup end
 
 " junegunn/limelight.vim
 let g:limelight_conceal_ctermfg=240
@@ -133,7 +138,7 @@ let g:pencil#textwidth = 79
 
 augroup pencil
  autocmd!
- autocmd filetype markdown,mkd call pencil#init()
+ autocmd filetype markdown,mkd call pencil#init({'wrap': 'soft'})
      \ | setlocal spell
  autocmd filetype vimwiki call pencil#init({'wrap': 'soft'})
      \ | setlocal spell
