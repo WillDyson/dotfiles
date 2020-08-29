@@ -1,13 +1,40 @@
 " ~~ init ~~
-" setup junegunn/vim-plug
-" create ~/.nvim/undodir
-" install ripgrep and nodejs
-" :PlugInstall
-" :CocInstall coc-metals coc-python coc-json
+" 1. Create ~/.nvim/undodir
+" 2. Install ripgrep and nodejs
+" 3. Setup junegunn/vim-plug
+" 4. Install plugins and coc extensions
 
 set nocompatible
 filetype plugin on
 syntax on
+
+" Plugins {{{
+
+call plug#begin('~/.config/nvim/plugged')
+
+Plug 'airblade/vim-gitgutter'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'jremmen/vim-ripgrep'
+Plug 'morhetz/gruvbox'
+Plug 'mbbill/undotree'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'reedes/vim-pencil'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-commentary'
+Plug 'vimwiki/vimwiki'
+
+call plug#end()
+
+" }}}
+
+" Basic settings {{{
 
 set hidden
 set nobackup
@@ -34,9 +61,11 @@ set list listchars=tab:>-,trail:.,extends:>
 set signcolumn=yes
 set updatetime=500
 
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
 let g:netrw_liststyle=3
 
-" yank to clipboard
 if has("clipboard")
   set clipboard=unnamed " copy to the system clipboard
 
@@ -45,40 +74,48 @@ if has("clipboard")
   endif
 endif
 
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
-call plug#begin('~/.config/nvim/plugged')
-
-Plug 'airblade/vim-gitgutter'
-Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'jremmen/vim-ripgrep'
-Plug 'morhetz/gruvbox'
-Plug 'mbbill/undotree'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'reedes/vim-pencil'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-commentary'
-Plug 'vimwiki/vimwiki'
-
-call plug#end()
+syntax match badspace " "
+highlight badspace guibg=Red ctermbg=1
 
 colorscheme gruvbox
 
+if !empty(glob("$HOME/.config/nvim/local.vim"))
+  source $HOME/.config/nvim/local.vim
+endif
+
+" }}}
+
+" Filetype settings {{{
+
+augroup vimscriptgroup
+    autocmd!
+    autocmd filetype vim setlocal foldmethod=marker
+    autocmd filetype vim setlocal foldlevel=0
+augroup end
+
+augroup markdowngroup
+    autocmd!
+    autocmd filetype markdown,mkd call pencil#init({'wrap': 'soft'})
+    autocmd filetype markdown,mkd setlocal spell
+augroup end
+
+augroup vimwikigroup
+    autocmd!
+    autocmd filetype vimwiki call pencil#init({'wrap': 'soft'})
+    autocmd filetype vimwiki setlocal spell
+augroup end
+
+" }}}
+
+" Mappings {{{
+
 let mapleader=','
 
-" delete without copy buffer
+nnoremap <silent> <leader>ve :edit $MYVIMRC<cr>
+nnoremap <leader>vs :source $MYVIMRC<cr>
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
-
-" resize windows
+nnoremap <silent> <leader><space> :noh<cr>
 nnoremap <silent> <leader>= :vertical resize +5<cr>
 nnoremap <silent> <leader>- :vertical resize -5<cr>
 nnoremap <silent> <leader>s= :resize +5<cr>
@@ -93,7 +130,6 @@ nnoremap <silent> <leader>fb :Buffers<cr>
 nnoremap <silent> <leader>fl :BLines<cr>
 nnoremap <silent> <leader>fh :Helptags<cr>
 nnoremap <silent> <leader>fm :Marks<cr>
-nnoremap <silent> <leader><space> :noh<cr>
 nnoremap <silent> <leader>zz :Goyo<cr>
 nnoremap <silent> <leader>zl :Limelight!!<cr>
 nnoremap <silent> <leader>wp :VimwikiDiaryPrevDay<cr>
@@ -105,22 +141,33 @@ nnoremap <silent> <leader>gb :GBrowse<cr>
 nnoremap <silent> <leader>ga :diffget //2<cr>
 nnoremap <silent> <leader>g\ :diffget //3<cr>
 
-" jremmen/vim-ripgrep
+" }}}
+
+" jremmen/vim-ripgrep {{{
+
 let g:rg_derive_root='true'
 
-" vimwiki/vimwiki
+" }}}
+
+" vimwiki/vimwiki {{{
+
 let g:vimwiki_list=[{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext=0
 augroup vimwikigroup
     autocmd!
-    " automatically update links on read diary
     autocmd BufRead,BufNewFile diary.wiki VimwikiDiaryGenerateLinks
 augroup end
 
-" junegunn/limelight.vim
+" }}}
+
+" junegunn/limelight.vim {{{
+
 let g:limelight_conceal_ctermfg=240
 
-" itchyny/lightline.vim
+" }}}
+
+" itchyny/lightline.vim {{{
+
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
@@ -133,18 +180,10 @@ let g:lightline = {
       \ },
       \ }
 
-" reedes/vim-pencil
-let g:pencil#textwidth = 79
+" }}}
 
-augroup pencil
- autocmd!
- autocmd filetype markdown,mkd call pencil#init({'wrap': 'soft'})
-     \ | setlocal spell
- autocmd filetype vimwiki call pencil#init({'wrap': 'soft'})
-     \ | setlocal spell
-augroup END
+" neoclide/coc.nvim {{{
 
-" neoclide/coc.nvim
 au BufRead,BufNewFile *.sc set filetype=scala
 
 inoremap <silent><expr> <TAB>
@@ -175,10 +214,10 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-nmap <Leader>we <Plug>(coc-metals-expand-decoration)
-nmap <leader>rn <Plug>(coc-rename)
-xmap <leader>fm  <Plug>(coc-format-selected)
-nmap <leader>fm  <Plug>(coc-format-selected)
+nmap <Leader>cwe <Plug>(coc-metals-expand-decoration)
+nmap <leader>crn <Plug>(coc-rename)
+xmap <leader>cfm  <Plug>(coc-format-selected)
+nmap <leader>cfm  <Plug>(coc-format-selected)
 
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
@@ -222,3 +261,5 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" }}}
