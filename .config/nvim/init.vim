@@ -106,6 +106,11 @@ augroup vimwikigroup
     autocmd filetype vimwiki setlocal spell
 augroup end
 
+augroup scalagroup
+    autocmd!
+    au BufRead,BufNewFile *.sc setlocal filetype=scala
+augroup end
+
 " }}}
 
 " Mappings {{{
@@ -184,8 +189,6 @@ let g:lightline = {
 " }}}
 
 " neoclide/coc.nvim {{{
-
-au BufRead,BufNewFile *.sc set filetype=scala
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
