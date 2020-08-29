@@ -60,6 +60,7 @@ set cmdheight=2
 set list listchars=tab:>-,trail:.,extends:>
 set signcolumn=yes
 set updatetime=500
+set mouse=a
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
