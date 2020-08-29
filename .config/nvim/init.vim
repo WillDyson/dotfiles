@@ -63,6 +63,8 @@ set list listchars=tab:>-,trail:.,extends:>,nbsp:*
 set signcolumn=yes
 set updatetime=500
 set mouse=a
+set ignorecase
+set smartcase
 
 colorscheme gruvbox
 
