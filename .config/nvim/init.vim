@@ -124,6 +124,7 @@ nnoremap <silent> <leader>- :vertical resize -15<cr>
 nnoremap <silent> <leader>s= :resize +15<cr>
 nnoremap <silent> <leader>s- :resize -15<cr>
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
+inoremap jk <esc>
 
 nnoremap \ :Rg<space>
 nnoremap <silent> <leader>ut :UndotreeShow<cr>
