@@ -13,6 +13,7 @@ syntax on
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'airblade/vim-gitgutter'
+Plug 'dhruvasagar/vim-table-mode'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
