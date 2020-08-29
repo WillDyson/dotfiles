@@ -119,10 +119,10 @@ nnoremap <leader>vs :source $MYVIMRC<cr>
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
 nnoremap <silent> <leader><space> :noh<cr>
-nnoremap <silent> <leader>= :vertical resize +5<cr>
-nnoremap <silent> <leader>- :vertical resize -5<cr>
-nnoremap <silent> <leader>s= :resize +5<cr>
-nnoremap <silent> <leader>s- :resize -5<cr>
+nnoremap <silent> <leader>= :vertical resize +15<cr>
+nnoremap <silent> <leader>- :vertical resize -15<cr>
+nnoremap <silent> <leader>s= :resize +15<cr>
+nnoremap <silent> <leader>s- :resize -15<cr>
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 nnoremap \ :Rg<space>
