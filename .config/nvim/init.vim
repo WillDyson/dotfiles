@@ -57,10 +57,12 @@ set splitright
 set scrolloff=5
 set foldlevelstart=99
 set cmdheight=2
-set list listchars=tab:>-,trail:.,extends:>
+set list listchars=tab:>-,trail:.,extends:>,nbsp:*
 set signcolumn=yes
 set updatetime=500
 set mouse=a
+
+colorscheme gruvbox
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -74,11 +76,6 @@ if has("clipboard")
     set clipboard+=unnamedplus
   endif
 endif
-
-syntax match badspace " "
-highlight badspace guibg=Red ctermbg=1
-
-colorscheme gruvbox
 
 if !empty(glob("$HOME/.config/nvim/local.vim"))
   source $HOME/.config/nvim/local.vim
