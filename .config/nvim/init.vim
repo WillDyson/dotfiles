@@ -62,7 +62,6 @@ set cmdheight=2
 set list listchars=tab:>-,trail:.,extends:>,nbsp:*
 set signcolumn=yes
 set updatetime=500
-set mouse=a
 set ignorecase
 set smartcase
 
@@ -99,12 +98,14 @@ augroup markdowngroup
     autocmd!
     autocmd filetype markdown,mkd call pencil#init({'wrap': 'soft'})
     autocmd filetype markdown,mkd setlocal spell
+    autocmd filetype markdown,mkd let b:coc_suggest_disable = 1 
 augroup end
 
 augroup vimwikigroup
     autocmd!
     autocmd filetype vimwiki call pencil#init({'wrap': 'soft'})
     autocmd filetype vimwiki setlocal spell
+    autocmd filetype vimwiki let b:coc_suggest_disable = 1 
 augroup end
 
 augroup scalagroup
@@ -128,6 +129,9 @@ nnoremap <silent> <leader>- :vertical resize -15<cr>
 nnoremap <silent> <leader>s= :resize +15<cr>
 nnoremap <silent> <leader>s- :resize -15<cr>
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
+nnoremap <leader>tc :tabnew<cr>
+nnoremap <leader>tn :tabn<cr>
+nnoremap <leader>tp :tabp<cr>
 inoremap jk <esc>
 
 nnoremap \ :Rg<space>
@@ -224,6 +228,8 @@ nmap <Leader>cwe <Plug>(coc-metals-expand-decoration)
 nmap <leader>crn <Plug>(coc-rename)
 xmap <leader>cfm  <Plug>(coc-format-selected)
 nmap <leader>cfm  <Plug>(coc-format-selected)
+xmap <leader>ca  <Plug>(coc-codeaction-selected)
+nmap <leader>ca  <Plug>(coc-codeaction-selected)
 
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
@@ -232,17 +238,18 @@ command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <leader>cA  :<C-u>CocAction<cr>
+nnoremap <silent><nowait> <leader>ca  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <leader>cc  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <leader>cj  :<C-u>CocNext<CR>
+nnoremap <silent><nowait> <leader>ck  :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> <leader>cp  :<C-u>CocListResume<CR>
 
 " Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <leader>co  :<C-u>CocList outline<cr>
 
 " Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <leader>cs  :<C-u>CocList -I symbols<cr>
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
