@@ -48,7 +48,6 @@ set shiftwidth=4
 set smartindent
 set nowrap
 set smartcase
-set noswapfile
 set nobackup
 set undodir=~/.nvim/undodir
 set undofile
@@ -129,9 +128,11 @@ nnoremap <silent> <leader>- :vertical resize -15<cr>
 nnoremap <silent> <leader>s= :resize +15<cr>
 nnoremap <silent> <leader>s- :resize -15<cr>
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
-nnoremap <leader>tc :tabnew<cr>
-nnoremap <leader>tn :tabn<cr>
-nnoremap <leader>tp :tabp<cr>
+
+nnoremap tc :tabnew<cr>
+nnoremap tn :tabn<cr>
+nnoremap tp :tabp<cr>
+
 inoremap jk <esc>
 
 nnoremap \ :Rg<space>
