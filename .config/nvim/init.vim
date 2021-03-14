@@ -12,6 +12,7 @@ syntax on
 
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'preservim/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'itchyny/lightline.vim'
@@ -27,7 +28,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'reedes/vim-pencil'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 Plug 'vimwiki/vimwiki'
@@ -159,6 +159,35 @@ nnoremap <silent> <leader>g\ :diffget //3<cr>
 " jremmen/vim-ripgrep {{{
 
 let g:rg_derive_root='true'
+
+" }}}
+
+" preservim/nerdtree {{{
+
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+augroup nerdtreegroup
+    autocmd!
+
+    " Start NERDTree when Vim starts with a directory argument.
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+
+    " Exit Vim if NERDTree is the only window left.
+    autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+
+    " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+    autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+augroup end
 
 " }}}
 
