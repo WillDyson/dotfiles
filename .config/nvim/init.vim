@@ -31,6 +31,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 Plug 'vimwiki/vimwiki'
+Plug 'purescript-contrib/purescript-vim'
 
 call plug#end()
 
@@ -68,8 +69,6 @@ colorscheme gruvbox
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-
-let g:netrw_liststyle=3
 
 if has("clipboard")
   set clipboard=unnamed " copy to the system clipboard
@@ -195,6 +194,7 @@ augroup end
 
 let g:vimwiki_list=[{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext=0
+
 augroup vimwikigroup
     autocmd!
     autocmd BufRead,BufNewFile diary.wiki VimwikiDiaryGenerateLinks
@@ -262,6 +262,7 @@ nmap <Leader>cwe <Plug>(coc-metals-expand-decoration)
 nmap <leader>crn <Plug>(coc-rename)
 xmap <leader>cfm  <Plug>(coc-format-selected)
 nmap <leader>cfm  <Plug>(coc-format-selected)
+nmap <leader>cfM  <Plug>(coc-format)
 xmap <leader>ca  <Plug>(coc-codeaction-selected)
 nmap <leader>ca  <Plug>(coc-codeaction-selected)
 
@@ -281,8 +282,6 @@ nnoremap <silent><nowait> <leader>co  :<C-u>CocList outline<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <leader>cs  :<C-u>CocList -I symbols<cr>
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -290,5 +289,7 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " }}}
