@@ -12,26 +12,28 @@ syntax on
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'preservim/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'easymotion/vim-easymotion'
 Plug 'itchyny/lightline.vim'
+Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
-Plug 'jremmen/vim-ripgrep'
+Plug 'junegunn/limelight.vim'
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-startify'
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdtree'
+Plug 'purescript-contrib/purescript-vim'
 Plug 'reedes/vim-pencil'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
-Plug 'purescript-contrib/purescript-vim'
 
 call plug#end()
 
@@ -127,31 +129,39 @@ nnoremap <silent> <leader>- :vertical resize -15<cr>
 nnoremap <silent> <leader>s= :resize +15<cr>
 nnoremap <silent> <leader>s- :resize -15<cr>
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
-
-nnoremap tc :tabnew<cr>
-nnoremap tn :tabn<cr>
-nnoremap tp :tabp<cr>
-
 inoremap jk <esc>
 
+" gt and gT for movement
+nnoremap tc :tabnew<cr>
+
 nnoremap \ :Rg<space>
+
 nnoremap <silent> <leader>ut :UndotreeShow<cr>
+
 nnoremap <silent> <leader>ff :Files<cr>
 nnoremap <silent> <leader>fg :GFiles<cr>
 nnoremap <silent> <leader>fb :Buffers<cr>
 nnoremap <silent> <leader>fl :BLines<cr>
 nnoremap <silent> <leader>fh :Helptags<cr>
 nnoremap <silent> <leader>fm :Marks<cr>
+
 nnoremap <silent> <leader>zz :Goyo<cr>
 nnoremap <silent> <leader>zl :Limelight!!<cr>
+
 nnoremap <silent> <leader>wp :VimwikiDiaryPrevDay<cr>
 nnoremap <silent> <leader>wP :VimwikiDiaryNextDay<cr>
+
 nnoremap <silent> <leader>gs :Git status<cr>
 nnoremap <silent> <leader>gm :Git commit<cr>
 nnoremap <silent> <leader>gp :Git push<cr>
 nnoremap <silent> <leader>gb :GBrowse<cr>
 nnoremap <silent> <leader>ga :diffget //2<cr>
 nnoremap <silent> <leader>g\ :diffget //3<cr>
+
+nnoremap <leader>nm :NERDTreeFocus<CR>
+nnoremap <leader>nn :NERDTree<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 
 " }}}
 
@@ -162,11 +172,6 @@ let g:rg_derive_root='true'
 " }}}
 
 " preservim/nerdtree {{{
-
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
 
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
