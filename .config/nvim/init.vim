@@ -134,6 +134,7 @@ inoremap jk <esc>
 " gt and gT for movement
 nnoremap tc :tabnew<cr>
 
+nnoremap / /\v
 nnoremap \ :Rg<space>
 
 nnoremap <silent> <leader>ut :UndotreeShow<cr>
@@ -158,6 +159,7 @@ nnoremap <silent> <leader>gb :GBrowse<cr>
 nnoremap <silent> <leader>ga :diffget //2<cr>
 nnoremap <silent> <leader>g\ :diffget //3<cr>
 
+nnoremap - :NERDTreeFocus<CR>
 nnoremap <leader>nm :NERDTreeFocus<CR>
 nnoremap <leader>nn :NERDTree<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
