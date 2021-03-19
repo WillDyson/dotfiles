@@ -26,6 +26,7 @@ Plug 'mhinz/vim-startify'
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
+Plug 'preservim/vimux'
 Plug 'purescript-contrib/purescript-vim'
 Plug 'reedes/vim-pencil'
 Plug 'tpope/vim-commentary'
@@ -111,6 +112,11 @@ augroup end
 augroup scalagroup
     autocmd!
     au BufRead,BufNewFile *.sc setlocal filetype=scala
+augroup end
+
+augroup purescriptgroup
+    autocmd!
+    au BufRead,BufNewFile *.purs nnoremap <buffer> <leader>tt :call VimuxRunCommand('spago test -w')<cr>
 augroup end
 
 " }}}
