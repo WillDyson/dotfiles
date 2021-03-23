@@ -25,7 +25,6 @@ Plug 'mbbill/undotree'
 Plug 'mhinz/vim-startify'
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'preservim/nerdtree'
 Plug 'preservim/vimux'
 Plug 'purescript-contrib/purescript-vim'
 Plug 'reedes/vim-pencil'
@@ -34,6 +33,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
 Plug 'vimwiki/vimwiki'
 
 call plug#end()
@@ -67,19 +67,12 @@ set signcolumn=yes
 set updatetime=500
 set ignorecase
 set smartcase
+set wildmenu
 
 colorscheme gruvbox
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-
-if has("clipboard")
-  set clipboard=unnamed " copy to the system clipboard
-
-  if has("unnamedplus") " X11 support
-    set clipboard+=unnamedplus
-  endif
-endif
 
 if !empty(glob("$HOME/.config/nvim/local.vim"))
   source $HOME/.config/nvim/local.vim
@@ -132,13 +125,10 @@ xnoremap <leader>d "_d
 nnoremap <silent> <leader><space> :noh<cr>
 nnoremap <silent> <leader>= :vertical resize +15<cr>
 nnoremap <silent> <leader>- :vertical resize -15<cr>
-nnoremap <silent> <leader>s= :resize +15<cr>
-nnoremap <silent> <leader>s- :resize -15<cr>
+nnoremap <silent> <leader>s= :resize +5<cr>
+nnoremap <silent> <leader>s- :resize -5<cr>
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 inoremap jk <esc>
-
-" gt and gT for movement
-nnoremap tc :tabnew<cr>
 
 nnoremap / /\v
 nnoremap \ :Rg<space>
@@ -165,41 +155,11 @@ nnoremap <silent> <leader>gb :GBrowse<cr>
 nnoremap <silent> <leader>ga :diffget //2<cr>
 nnoremap <silent> <leader>g\ :diffget //3<cr>
 
-nnoremap - :NERDTreeFocus<CR>
-nnoremap <leader>nm :NERDTreeFocus<CR>
-nnoremap <leader>nn :NERDTree<CR>
-nnoremap <leader>nt :NERDTreeToggle<CR>
-nnoremap <leader>nf :NERDTreeFind<CR>
-
 " }}}
 
 " jremmen/vim-ripgrep {{{
 
 let g:rg_derive_root='true'
-
-" }}}
-
-" preservim/nerdtree {{{
-
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-
-augroup nerdtreegroup
-    autocmd!
-
-    " Start NERDTree when Vim starts with a directory argument.
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
-
-    " Exit Vim if NERDTree is the only window left.
-    autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-    \ quit | endif
-
-    " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-    autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-augroup end
 
 " }}}
 
@@ -267,33 +227,32 @@ endif
 
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <Leader>cwe <Plug>(coc-metals-expand-decoration)
+
 nmap <leader>crn <Plug>(coc-rename)
+
 xmap <leader>cfm  <Plug>(coc-format-selected)
 nmap <leader>cfm  <Plug>(coc-format-selected)
 nmap <leader>cfM  <Plug>(coc-format)
+
 xmap <leader>ca  <Plug>(coc-codeaction-selected)
 nmap <leader>ca  <Plug>(coc-codeaction-selected)
+nmap <leader>cA  <Plug>(coc-codeaction)
 
-" Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-nnoremap <silent><nowait> <leader>cA  :<C-u>CocAction<cr>
-nnoremap <silent><nowait> <leader>ci  :<C-u>CocList diagnostics<cr>
-nnoremap <silent><nowait> <leader>cc  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <leader>cld  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <leader>cle  :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <leader>clc  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <leader>clo  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <leader>cls  :<C-u>CocList -I symbols<cr>
 nnoremap <silent><nowait> <leader>cj  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <leader>ck  :<C-u>CocPrev<CR>
-nnoremap <silent><nowait> <leader>cp  :<C-u>CocListResume<CR>
-
-" Find symbol of current document.
-nnoremap <silent><nowait> <leader>co  :<C-u>CocList outline<cr>
-
-" Search workspace symbols.
-nnoremap <silent><nowait> <leader>cs  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <leader>clr  :<C-u>CocListResume<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
