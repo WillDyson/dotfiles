@@ -1,8 +1,7 @@
 " ~~ init ~~
-" 1. Create ~/.nvim/undodir
-" 2. Install ripgrep and nodejs
-" 3. Setup junegunn/vim-plug
-" 4. Install plugins and coc extensions
+" 1. Install ripgrep and nodejs
+" 2. Setup junegunn/vim-plug
+" 3. Install plugins and coc extensions
 
 set nocompatible
 filetype plugin on
@@ -53,7 +52,6 @@ set smartindent
 set nowrap
 set smartcase
 set nobackup
-set undodir=~/.nvim/undodir
 set undofile
 set incsearch
 set noshowmode
