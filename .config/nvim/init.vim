@@ -151,8 +151,8 @@ nnoremap <silent> <leader>wP :VimwikiDiaryNextDay<cr>
 
 nnoremap <silent> <leader>gs :Git status<cr>
 nnoremap <silent> <leader>gb :GBrowse<cr>
-nnoremap <silent> <leader>ga :diffget //2<cr>
-nnoremap <silent> <leader>g\ :diffget //3<cr>
+nnoremap <silent> <leader>gf :diffget //2<cr>
+nnoremap <silent> <leader>gj :diffget //3<cr>
 
 " }}}
 
