@@ -110,6 +110,11 @@ augroup purescriptgroup
     au BufRead,BufNewFile *.purs nnoremap <buffer> <leader>tt :call VimuxRunCommand('spago test -w')<cr>
 augroup end
 
+augroup haskellgroup
+  autocmd!
+  au BufRead,BufNewFile *.hs nnoremap <buffer> <leader>tt :call VimuxRunCommand('ghcid -c "stack ghci"')<cr>
+augroup end
+
 " }}}
 
 " Mappings {{{
