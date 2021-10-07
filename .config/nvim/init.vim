@@ -123,8 +123,6 @@ let mapleader=','
 
 nnoremap <silent> <leader>ve :edit $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<cr>
-nnoremap <leader>d "_d
-xnoremap <leader>d "_d
 nnoremap <silent> <leader><space> :noh<cr>
 nnoremap <silent> <leader>= :vertical resize +15<cr>
 nnoremap <silent> <leader>- :vertical resize -15<cr>
