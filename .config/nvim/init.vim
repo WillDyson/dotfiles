@@ -150,8 +150,6 @@ nnoremap <silent> <leader>wp :VimwikiDiaryPrevDay<cr>
 nnoremap <silent> <leader>wP :VimwikiDiaryNextDay<cr>
 
 nnoremap <silent> <leader>gs :Git status<cr>
-nnoremap <silent> <leader>gm :Git commit<cr>
-nnoremap <silent> <leader>gp :Git push<cr>
 nnoremap <silent> <leader>gb :GBrowse<cr>
 nnoremap <silent> <leader>ga :diffget //2<cr>
 nnoremap <silent> <leader>g\ :diffget //3<cr>
