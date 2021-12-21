@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+while true
+do
+    NET_S=""
+
+    if nmcli device show wlp0s20f3 | egrep '100' > /dev/null 2> /dev/null
+    then
+        NET_S+="W"
+    fi
+
+    if nmcli device show enp0s31f6 | egrep '100' > /dev/null 2> /dev/null
+    then
+        NET_S+="E"
+    fi
+
+    if nmcli device show 78:46:D4:89:E7:AA | egrep '100' > /dev/null 2> /dev/null
+    then
+        NET_S+="M"
+    fi
+
+    if nmcli device show nordlynx | egrep '100' > /dev/null 2> /dev/null
+    then
+        NET_S+="N"
+    fi
+
+    VOLUME=$(awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master))
+
+    if amixer get Master | grep off > /dev/null 2> /dev/null
+    then
+        VOLUME+="M"
+    fi
+
+    if amixer get Capture | grep off > /dev/null 2> /dev/null
+    then
+        VOLUME+="m"
+    fi
+
+    BATT_P=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | cut -d: -f2 | tr -d ' ')
+    BATT_S=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep state | cut -d: -f2 | tr -d ' ')
+
+    if [[ "$BATT_S" == "discharging" ]]
+    then
+        BATT_SS="*"
+    else
+        BATT_SS="^"
+    fi
+
+    DATE=$(date +'%Y-%m-%d %l:%M%p')
+
+    echo "${NET_S} | ${VOLUME} | ${BATT_SS}${BATT_P} | ${DATE}"
+
+    sleep 1
+done
